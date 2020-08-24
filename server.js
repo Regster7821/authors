@@ -12,4 +12,13 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 // This is where we import the users routes function from our user.routes.js file
 require("./server/routes/author.routes")(app);
 
-app.listen(8000, () => console.log("The server is all fired up on port 8000"));
+const server = app.listen(8000, () => console.log("The server is all fired up on port 8000"));
+
+const io = require('socket.io')(server);
+
+io.on('connection', socket => {
+    console.log(socket.id);
+    socket.on('event_from_client', data => {
+        socket.broadcast.emit('send_data_to_all_other_clients', data);
+    });
+});

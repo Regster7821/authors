@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import {
     Paper,
     FormControl,
@@ -74,5 +73,5 @@ export default function AuthorForm(props) {
             </form>
         </Paper> 
         </div>
-    )
-}
+    );
+};
